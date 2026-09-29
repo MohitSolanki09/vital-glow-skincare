@@ -1,0 +1,10 @@
+{
+  "description": "Showcases a premium facewash with elegant design, smooth interactions, and detailed brand and product info to engage skincare customers effectively.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
