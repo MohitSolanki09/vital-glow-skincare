@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react"
+import { useReveal, useProductParallax } from "./useMotion"
 import productImg from "./assets/product.png"
 import logoImg from "./assets/logo-480.png"
+import { ProductOrbitSection, SkincareEditorialSection } from "./EditorialSections"
 
 // ─── Nav ────────────────────────────────────────────────────────────────────
 function Nav() {
@@ -28,6 +30,7 @@ function Nav() {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60)
+    fn()
     window.addEventListener("scroll", fn, { passive: true })
     return () => window.removeEventListener("scroll", fn)
   }, [])
@@ -47,7 +50,7 @@ function Nav() {
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled || open
           ? "bg-white/92 backdrop-blur-md shadow-[0_1px_24px_rgba(11,107,122,0.07)]"
-          : "bg-[#f3f9fa]/95"
+          : "bg-transparent"
       }`}
     >
       <div className="page-container py-4 flex items-center justify-between">
@@ -110,10 +113,12 @@ function Nav() {
       {/* Mobile drawer */}
       <div
         id="mobile-menu"
-        hidden={!open}
-        className="lg:hidden mobile-menu bg-white border-t border-[#0b6b7a]/10"
+        inert={!open}
+        aria-hidden={!open}
+        data-open={open}
+        className="lg:hidden mobile-menu bg-white/96 backdrop-blur-md"
       >
-        <div className="px-6 py-6 flex flex-col gap-4">
+        <div className="mobile-menu-content">
           {links.map((l) => (
             <a
               key={l.label}
@@ -139,6 +144,7 @@ function Nav() {
 
 // ─── Hero ───────────────────────────────────────────────────────────────────
 function HeroSection() {
+  const { frameRef, imageRef } = useProductParallax("hero")
   return (
     <section
       id="home"
@@ -175,10 +181,10 @@ function HeroSection() {
 
       <div className="relative page-container pt-28 pb-24 w-full grid lg:grid-cols-2 gap-12 items-center">
         {/* Left */}
-        <div className="space-y-8">
+        <div className="space-y-8 animate-fadein">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0b6b7a]/8 border border-[#0b6b7a]/15">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0b6b7a] " />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0b6b7a] animate-pulse" />
             <span className="text-xs font-bold tracking-widest text-[#0b6b7a] uppercase">
               New Formula · 100ml
             </span>
@@ -188,7 +194,7 @@ function HeroSection() {
             className="leading-[1.04]"
             style={{
               fontFamily: "'DM Serif Display', serif",
-              fontSize: "clamp(2.65rem, 5.6vw, 5rem)",
+              fontSize: "var(--hero-size)",
               color: "#0e1c20",
             }}
           >
@@ -233,7 +239,10 @@ function HeroSection() {
         </div>
 
         {/* Right: product + floating labels */}
-        <div className="hero-product relative flex items-center justify-center min-h-[440px]">
+        <div
+          ref={frameRef}
+          className="hero-product relative flex items-center justify-center min-h-[480px]"
+        >
           {/* Glow behind product */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -245,7 +254,7 @@ function HeroSection() {
 
           {/* Floating label: Salicylic Acid */}
           <div
-            className="absolute left-0 top-16 z-20"
+            className="absolute left-0 top-16 animate-float z-20"
             style={{ animationDelay: "0s" }}
           >
             <div className="glass-card rounded-2xl px-4 py-3 shadow-lg flex items-center gap-2.5">
@@ -261,7 +270,7 @@ function HeroSection() {
 
           {/* Floating label: Sulphate Free */}
           <div
-            className="absolute right-0 top-28 z-20"
+            className="absolute right-0 top-28 animate-floatB z-20"
             style={{ animationDelay: "0.8s" }}
           >
             <div className="glass-card rounded-2xl px-4 py-3 shadow-lg flex items-center gap-2.5">
@@ -279,7 +288,7 @@ function HeroSection() {
 
           {/* Floating label: 100ml */}
           <div
-            className="absolute right-2 bottom-28 z-20"
+            className="absolute right-2 bottom-28 animate-floatC z-20"
             style={{ animationDelay: "1.6s" }}
           >
             <div className="glass-card rounded-2xl px-4 py-3 shadow-lg flex items-center gap-2.5">
@@ -294,21 +303,25 @@ function HeroSection() {
           </div>
 
           {/* Original product image */}
-          <div className="relative z-10 w-full max-w-72 sm:max-w-80 lg:max-w-[22rem]">
+          <div
+            ref={imageRef}
+            className="relative z-10 w-full max-w-72 sm:max-w-80 lg:max-w-[22rem]"
+          >
             <img
               width={1086}
               height={1448}
               decoding="async"
               src={productImg}
-              fetchPriority="high" alt="Vital Glow Acne Fight Face Wash"
-              className="w-full rounded-2xl shadow-lg"
+              fetchPriority="high"
+              alt="Vital Glow Acne Fight Face Wash"
+              className="w-full rounded-3xl shadow-2xl"
             />
           </div>
         </div>
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-scroll">
         <span className="text-[10px] font-bold tracking-widest text-[#526d75] uppercase">
           Scroll
         </span>
@@ -320,11 +333,15 @@ function HeroSection() {
 
 // ─── About ──────────────────────────────────────────────────────────────────
 function AboutSection() {
+  const { ref, visible } = useReveal()
   return (
     <section id="about" className="section-space bg-white">
       <div className="page-container">
         <div
-          className={`grid lg:grid-cols-2 gap-10 lg:gap-10 lg:gap-16 xl:gap-24 items-center `}
+          ref={ref}
+          className={`grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-28 items-center reveal ${
+            visible ? "visible" : ""
+          }`}
         >
           {/* Text */}
           <div className="space-y-8 order-2 lg:order-1">
@@ -373,7 +390,7 @@ function AboutSection() {
 
           {/* Image */}
           <div className="relative order-1 lg:order-2">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#edf5f7]">
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-[#edf5f7]">
               <img
                 src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=700&h=875&fit=crop&auto=format"
                 loading="lazy"
@@ -385,7 +402,7 @@ function AboutSection() {
               />
             </div>
             {/* Stat badge */}
-            <div className="absolute left-4 bottom-6 glass-card rounded-2xl shadow-xl p-5">
+            <div className="absolute left-4 bottom-6 lg:-left-6 lg:bottom-14 glass-card rounded-2xl shadow-xl p-5">
               <p
                 className="text-3xl font-bold text-[#0b6b7a]"
                 style={{ fontFamily: "'DM Serif Display', serif" }}
@@ -398,7 +415,7 @@ function AboutSection() {
               </p>
             </div>
             {/* Teal accent slab */}
-            <div className="absolute right-0 top-12 w-1 h-24 rounded-full bg-[#0b6b7a]/20" />
+            <div className="absolute right-0 lg:-right-4 top-12 w-1 h-24 rounded-full bg-[#0b6b7a]/20" />
           </div>
         </div>
       </div>
@@ -408,6 +425,8 @@ function AboutSection() {
 
 // ─── Product Detail ──────────────────────────────────────────────────────────
 function ProductDetailSection() {
+  const { frameRef, imageRef } = useProductParallax("detail")
+  const { ref, visible } = useReveal()
   const specs = [
     {
       icon: "◈",
@@ -433,11 +452,17 @@ function ProductDetailSection() {
     <section id="product" className="section-space bg-[#f0f8fa]">
       <div className="page-container">
         <div
-          className={`grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-center `}
+          ref={ref}
+          className={`grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-center reveal ${
+            visible ? "visible" : ""
+          }`}
         >
           {/* Product image */}
           <div className="flex justify-center">
-            <div className="relative w-full max-w-[22rem]">
+            <div
+              ref={frameRef}
+              className="relative w-full max-w-72 sm:max-w-80 lg:max-w-[22rem]"
+            >
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -445,7 +470,10 @@ function ProductDetailSection() {
                     "radial-gradient(ellipse 65% 65% at 50% 55%, rgba(11,107,122,0.14) 0%, transparent 70%)",
                 }}
               />
-              <div className="relative w-full max-w-72 sm:max-w-80 lg:max-w-[22rem]">
+              <div
+                ref={imageRef}
+                className="relative w-full max-w-72 sm:max-w-80 lg:max-w-[22rem]"
+              >
                 <img
                   width={1086}
                   height={1448}
@@ -453,7 +481,7 @@ function ProductDetailSection() {
                   src={productImg}
                   loading="lazy"
                   alt="Vital Glow Acne Fight Face Wash 100ml"
-                  className="w-full rounded-2xl shadow-lg"
+                  className="w-full rounded-3xl shadow-2xl"
                 />
               </div>
             </div>
@@ -520,6 +548,7 @@ function ProductDetailSection() {
 
 // ─── Benefits ───────────────────────────────────────────────────────────────
 function BenefitsSection() {
+  const { ref, visible } = useReveal(0.08)
   const cards = [
     {
       icon: "◉",
@@ -544,7 +573,7 @@ function BenefitsSection() {
   ]
 
   return (
-    <section className="section-space bg-white">
+    <section id="benefits" className="section-space bg-white">
       <div className="page-container">
         <div className="text-center mb-16">
           <p className="text-xs font-bold tracking-widest uppercase text-[#0b6b7a] mb-4">
@@ -561,11 +590,13 @@ function BenefitsSection() {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {cards.map((c) => (
+        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {cards.map((c, i) => (
             <div
               key={c.title}
-              className={`p-8 rounded-2xl border border-[#0b6b7a]/8 bg-[#f7fafb] hover:bg-[#edf5f7] hover:border-[#0b6b7a]/20  transition-all duration-300 group `}
+              className={`benefit-card p-8 rounded-3xl border border-[#0b6b7a]/8 bg-[#f7fafb] hover:bg-[#edf5f7] hover:border-[#0b6b7a]/20 transition-all duration-300 group reveal ${
+                visible ? "visible" : ""
+              } d${i + 1}`}
             >
               <span className="text-3xl text-[#0b6b7a] group-hover:text-[#c8860a] transition-colors duration-300 block mb-6">
                 {c.icon}
@@ -584,6 +615,7 @@ function BenefitsSection() {
 
 // ─── Brand Identity ──────────────────────────────────────────────────────────
 function BrandingSection() {
+  const { ref, visible } = useReveal()
   const brandColors = [
     { name: "Vital Gold", hex: "#C8860A", bg: "#C8860A" },
     { name: "Clear Teal", hex: "#0B6B7A", bg: "#0B6B7A" },
@@ -601,7 +633,10 @@ function BrandingSection() {
     <section id="brand" className="section-space bg-[#0e1c20] overflow-hidden">
       <div className="page-container">
         {/* Heading */}
-        <div className={`text-center mb-20 `}>
+        <div
+          ref={ref}
+          className={`text-center mb-20 reveal ${visible ? "visible" : ""}`}
+        >
           <p className="text-xs font-bold tracking-widest uppercase text-[#69c5cf] mb-5">
             Brand Identity
           </p>
@@ -621,8 +656,8 @@ function BrandingSection() {
         {/* Main grid */}
         <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
           {/* Logo showcase */}
-          <div className={`space-y-8 `}>
-            <div className="flex items-center justify-center py-16 px-12 rounded-2xl border border-white/6 bg-white/4 backdrop-blur-sm">
+          <div className={`space-y-8 reveal ${visible ? "visible" : ""} d1`}>
+            <div className="flex items-center justify-center py-16 px-12 rounded-3xl border border-white/6 bg-white/4 backdrop-blur-sm">
               <img
                 src={logoImg}
                 width={480}
@@ -651,7 +686,7 @@ function BrandingSection() {
           </div>
 
           {/* Brand details */}
-          <div className={`space-y-10 `}>
+          <div className={`space-y-10 reveal ${visible ? "visible" : ""} d2`}>
             {/* Colors */}
             <div>
               <p className="text-[10px] font-bold tracking-widest uppercase text-white/70 mb-5">
@@ -702,7 +737,9 @@ function BrandingSection() {
 
         {/* Image strip */}
         <div
-          className={`grid sm:grid-cols-3 gap-4 rounded-2xl overflow-hidden `}
+          className={`grid sm:grid-cols-3 gap-4 rounded-3xl overflow-hidden reveal ${
+            visible ? "visible" : ""
+          } d3`}
         >
           {images.map((src, i) => (
             <div key={i} className="aspect-video bg-[#1a2e35] overflow-hidden">
@@ -712,7 +749,13 @@ function BrandingSection() {
                 decoding="async"
                 width={480}
                 height={300}
-                alt={["Skincare bottles arranged with botanical ingredients", "Blue skincare bottle on pastel display blocks", "White skincare tube in soft natural light"][i]}
+                alt={
+                  [
+                    "Skincare bottles arranged with botanical ingredients",
+                    "Blue skincare bottle on pastel display blocks",
+                    "White skincare tube in soft natural light",
+                  ][i]
+                }
                 className="w-full h-full object-cover opacity-60 hover:opacity-90 hover:scale-105 transition-all duration-700"
               />
             </div>
@@ -725,6 +768,7 @@ function BrandingSection() {
 
 // ─── Coming Soon ─────────────────────────────────────────────────────────────
 function ComingSoonSection() {
+  const { ref, visible } = useReveal()
   const [email, setEmail] = useState("")
   const [joined, setJoined] = useState(false)
 
@@ -759,9 +803,12 @@ function ComingSoonSection() {
 
       <div className="relative page-container">
         {/* Heading */}
-        <div className={`text-center mb-16 `}>
+        <div
+          ref={ref}
+          className={`text-center mb-16 reveal ${visible ? "visible" : ""}`}
+        >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0b6b7a]/18 border border-[#0b6b7a]/30 rounded-full text-xs font-bold tracking-widest uppercase text-[#5bc0cc] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#5bc0cc] " />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#5bc0cc] animate-pulse" />
             Coming Soon
           </span>
           <h2
@@ -783,10 +830,12 @@ function ComingSoonSection() {
 
         {/* Product placeholder cards */}
         <div className="grid md:grid-cols-3 gap-5 mb-16">
-          {upcoming.map((p) => (
+          {upcoming.map((p, i) => (
             <div
               key={p.label}
-              className={`rounded-2xl border border-white/5 p-10 flex flex-col items-center gap-6 text-center `}
+              className={`rounded-3xl border border-white/5 p-10 flex flex-col items-center gap-6 text-center reveal ${
+                visible ? "visible" : ""
+              } d${i + 1}`}
               style={{
                 background: "rgba(255,255,255,0.03)",
                 backdropFilter: "blur(8px)",
@@ -868,6 +917,7 @@ function ComingSoonSection() {
 
 // ─── Contact ─────────────────────────────────────────────────────────────────
 function ContactSection() {
+  const { ref, visible } = useReveal()
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -901,7 +951,10 @@ function ContactSection() {
     <section id="contact" className="section-space bg-white">
       <div className="page-container">
         <div
-          className={`grid lg:grid-cols-2 gap-10 lg:gap-10 lg:gap-16 xl:gap-24 `}
+          ref={ref}
+          className={`grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-28 reveal ${
+            visible ? "visible" : ""
+          }`}
         >
           {/* Info */}
           <div className="space-y-10">
@@ -1191,6 +1244,8 @@ export default function App() {
         <AboutSection />
         <ProductDetailSection />
         <BenefitsSection />
+        <ProductOrbitSection />
+        <SkincareEditorialSection />
         <BrandingSection />
         <ComingSoonSection />
         <ContactSection />

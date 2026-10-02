@@ -29,6 +29,17 @@ Shared container, gutter, section-spacing and heading tokens are in `src/index.c
 - Keyboard focus outline and keyboard form submission checked.
 - Required fields and malformed email validation checked; both valid submissions display local-only status messages.
 - All nine image instances loaded; no browser console warnings/errors observed.
-- Reduced-motion CSS was reviewed and no continuous animation remained in the rendered page. OS-level reduced-motion emulation was not available through the browser controls, so that mode was not independently exercised.
+- Restored the reference motion: 900 ms hero entrance, 850 ms fade/slide reveals, 100 ms card staggers, 4/5/6-second floating labels, 2.2-second scroll cue, button/card hover lifts and scroll-linked product translation/rotation. Timings and styles were inspected in the live Figma preview.
+- Reduced-motion CSS disables animations/transitions and smooth scrolling; the motion hooks also stop parallax when the preference changes. This behavior was reviewed in source. OS-level reduced-motion emulation was unavailable through the browser controls, so that mode was not independently exercised.
 
 The active logo is an optimized 480px derivative (168 KB versus the original 836 KB); the favicon is 5 KB. Original assets remain untouched. Below-fold photographs and the product detail image load lazily.
+
+## Final verification — 2026-10-03
+
+Continued from the existing motion-restoration diff without rebuilding the implementation. TypeScript, production build and diff whitespace checks pass; no lint script is configured. No dependencies were added.
+
+Repeated all nine viewport measurements against documentElement.clientWidth (the usable width after the scrollbar), including transformed product bounds and text/form bounds. At 320px, both usable width and scroll width are 305px: the minimum-body-width overflow is fixed. Completed desktop and 320px top-to-footer browser passes. All reveal groups became visible, all nine image instances loaded, and no console/React errors or warnings were observed. Desktop section positions and heights stayed identical before and after the pass, with no visible layout shifts.
+
+Verified hero entrance progression, moving labels, changing product rotation on scroll, card stagger delays, gold icon/hover lift, image-hover scaling, anchor offsets, and mobile menu animation, Escape focus return, inert closed links and anchor closing.
+
+Intentional differences from the prototype remain: accessible contrast/focus/form labels, honest local-only form status, an enquiry CTA in place of the unconnected checkout, compact small-screen reflow and bounded parallax (disabled below 640px). Original images, brand and section order are preserved.
