@@ -44,7 +44,6 @@ textarea { resize: vertical; }
   .btn-lift:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(11, 107, 122, .22); }
   .benefit-card.visible:hover { translate: 0 -6px; }
 }
-.text-gold-gradient { background: linear-gradient(135deg, #e8a020 0%, #c8860a 50%, #f0c050 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .mobile-menu { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows .4s ease, opacity .4s ease, visibility 0s .4s; }
 .mobile-menu[data-open='true'] { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition-delay: 0s; }
 .mobile-menu-content { min-height: 0; overflow-y: auto; max-height: calc(100dvh - 76px); display: flex; flex-direction: column; padding-inline: var(--gutter); }
@@ -71,7 +70,6 @@ footer button, #contact button:disabled { width: 44px; height: 44px; }
   .hero-product > .absolute.right-2 { bottom: 0; right: 0; }
   #home > .absolute.bottom-10 { display: none; }
   #home .text-lg { font-size: 1rem; }
-  #brand .px-12 { padding-inline: 1.5rem; }
   #coming-soon .p-10 { padding: 2rem 1.5rem; }
 }
 
@@ -92,11 +90,11 @@ footer button, #contact button:disabled { width: 44px; height: 44px; }
 .reveal.d3 { transition-delay: .3s; }
 .reveal.d4 { transition-delay: .4s; }
 .benefit-card { transition-property: opacity, transform, translate, background-color, border-color; }
-#brand, #coming-soon { --heading-size: clamp(2rem, 5vw, 4.5rem); }
+#coming-soon { --heading-size: clamp(2rem, 5vw, 4.5rem); }
 #benefits { --heading-size: clamp(2rem, 4vw, 3.2rem); }
 @media (min-width: 640px) {
   :root { --hero-size: clamp(3rem, 6vw, 5rem); --heading-size: clamp(2.4rem, 4vw, 3.5rem); }
-  #brand, #coming-soon { --heading-size: clamp(2.4rem, 5vw, 4.5rem); }
+  #coming-soon { --heading-size: clamp(2.4rem, 5vw, 4.5rem); }
   #benefits { --heading-size: clamp(2.2rem, 4vw, 3.2rem); }
 }
 @media (prefers-reduced-motion: reduce) {

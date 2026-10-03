@@ -1,5 +1,6 @@
 import { useReveal } from "./useMotion"
 import productImg from "./assets/product.png"
+import editorialPoster from "./assets/acne-fight-water-poster.png"
 import logoImg from "./assets/logo-64.png"
 import "./editorial.css"
 
@@ -43,7 +44,7 @@ export function SkincareEditorialSection() {
     <section className="vg-editorial-section" aria-labelledby="vg-editorial-title">
       <div ref={ref} className={`vg-editorial reveal ${visible ? "visible" : ""}`}>
         <div className="vg-editorial-photo">
-          <img src={productImg} width={1086} height={1448} loading="lazy" alt="Vital Glow Acne Fight face wash with botanical ingredients" />
+          <img src={editorialPoster} width={1145} height={1374} loading="lazy" alt="Vital Glow Acne Fight face wash with blue water, leaves and stones" />
           <div className="vg-photo-copy">
             <h2 id="vg-editorial-title">Our Special Skincare</h2>
             <p>A thoughtful daily cleanse.<br />Discover your Vital Glow ritual.</p>

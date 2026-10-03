@@ -1,0 +1,49 @@
+.brand-story { background: #f8fbfa; }
+.brand-story-grid { display: grid; grid-template-columns: 55% 45%; grid-template-rows: auto auto 1fr; position: relative; }
+.brand-story-heading { grid-column: 1; grid-row: 1; position: relative; z-index: 2; padding-top: 20px; }
+.brand-story-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #0b6b7a; display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+.brand-story-eyebrow::before { content: ''; width: 38px; height: 1px; background: #c8860a; }
+.brand-story-heading h2 { font: 400 clamp(48px,6.4vw,88px)/1.04 var(--font-display); letter-spacing: -.035em; margin: 0; }
+.brand-story-heading em { font-weight: 400; color: #0b6b7a; }
+.brand-story-copy { grid-column: 1; grid-row: 2; max-width: 510px; padding-right: 40px; margin-top: 34px; color: #3a5a62; font-size: 15px; line-height: 1.85; }
+.brand-story-copy p + p { margin-top: 20px; }
+.brand-story-visual { grid-column: 2; grid-row: 1 / 4; align-self: center; position: relative; padding: 45px 12px 50px 16px; margin-top: 48px; }
+.brand-story-photo { overflow: hidden; border-radius: 120px 28px 28px 28px; border: 1px solid #0b6b7a16; box-shadow: 0 24px 55px #0b6b7a12; position: relative; background: #e8f4f6; }
+.brand-story-photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; transition: transform .85s cubic-bezier(.22,1,.36,1); }
+.brand-story-orbit { position: absolute; inset: 0 1% 1% -10%; border: 1px solid #0b6b7a20; border-radius: 50%; transform: rotate(-12deg); background: radial-gradient(ellipse, #9edbe91f, transparent 70%); pointer-events: none; }
+.brand-story-note { position: absolute; top: 10px; right: 20px; display: flex; gap: 24px; align-items: center; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: #526d75; }
+.brand-story-note > span { color: #c8860a; font-size: 17px; }
+.brand-story-badge { position: absolute; bottom: 5px; left: -50px; background: #fffef8f5; border: 1px solid #cfdbd4; border-radius: 18px; box-shadow: 0 12px 30px #173f4210; padding: 24px 30px; min-width: 170px; }
+.brand-story-badge strong { display: block; font: 400 48px/1 var(--font-display); color: #0b6b7a; margin-bottom: 12px; }
+.brand-story-badge > span { display: block; font-size: 10px; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; color: #526d75; }
+.brand-story-principles { grid-column: 1; grid-row: 3; list-style: none; padding: 0; margin: 38px 90px 0 0; }
+.brand-story-principles li { display: grid; grid-template-columns: 35px 125px 1fr; align-items: baseline; position: relative; border-top: 1px solid #0b6b7a25; padding: 17px 0; gap: 10px; }
+.brand-story-principles li::before { content: ''; position: absolute; top: -1px; left: 0; height: 1px; width: 0; background: #c8860a; transition: width .4s ease; }
+.brand-story-number { font-size: 10px; color: #a47326; }
+.brand-story-principles h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; }
+.brand-story-principles p { font-size: 12px; color: #526d75; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .brand-story-principles li:hover::before { width: 100%; } .brand-story-photo:hover img { transform: scale(1.015); } }
+@media (max-width: 1100px) { .brand-story-principles { margin-right: 45px; } .brand-story-principles li { grid-template-columns: 25px 100px 1fr; gap: 6px; } .brand-story-badge { left: -20px; } }
+@media (min-width: 901px) and (max-width: 1100px) { .brand-story-orbit { inset: 4% 6% 4% -5%; transform: rotate(-6deg); } }
+@media (max-width: 900px) {
+  .brand-story-grid { grid-template-columns: 1fr; }
+  .brand-story-heading { padding-top: 0; }
+  .brand-story-heading h2 { font-size: clamp(46px,8vw,70px); }
+  .brand-story-copy { padding-right: 0; max-width: 610px; margin-top: 28px; }
+  .brand-story-visual { grid-column: 1; grid-row: 3; width: 100%; max-width: 520px; justify-self: center; margin-top: 36px; padding: 35px 10px 75px; }
+  .brand-story-orbit { inset: 0 2% 6%; transform: rotate(-6deg); }
+  .brand-story-badge { left: 0; bottom: 14px; padding: 20px 24px; }
+  .brand-story-principles { grid-column: 1; grid-row: 4; margin: 30px 0 0; }
+  .brand-story-principles li { grid-template-columns: 35px 125px 1fr; padding-block: 20px; }
+}
+@media (max-width: 479px) {
+  .brand-story-heading h2 { font-size: clamp(42px,12vw,54px); }
+  .brand-story-copy { font-size: 14px; line-height: 1.8; }
+  .brand-story-photo { border-radius: 75px 24px 24px 24px; }
+  .brand-story-orbit { display: none; }
+  .brand-story-badge { min-width: 140px; padding: 18px 22px; bottom: 0; }
+  .brand-story-badge strong { font-size: 39px; }
+  .brand-story-visual { padding-bottom: 100px; }
+  .brand-story-principles li { grid-template-columns: 24px 1fr; gap: 6px 12px; }
+  .brand-story-principles p { grid-column: 2; }
+}

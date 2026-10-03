@@ -1,6 +1,9 @@
+import { ComingSoonSection } from "./ComingSoon"
+import { PremiumContactSection } from "./PremiumContactSection"
+import { AboutBrand } from "./AboutBrand"
 import { useState, useEffect, useRef } from "react"
 import { useReveal, useProductParallax } from "./useMotion"
-import productImg from "./assets/product.png"
+import productImg from "./assets/vital-glow-acne-fight-lifestyle.png"
 import logoImg from "./assets/logo-480.png"
 import { ProductOrbitSection, SkincareEditorialSection } from "./EditorialSections"
 
@@ -39,7 +42,6 @@ function Nav() {
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Product", href: "#product" },
-    { label: "Brand", href: "#brand" },
     { label: "Coming Soon", href: "#coming-soon" },
     { label: "Contact", href: "#contact" },
   ]
@@ -308,12 +310,13 @@ function HeroSection() {
             className="relative z-10 w-full max-w-72 sm:max-w-80 lg:max-w-[22rem]"
           >
             <img
-              width={1086}
-              height={1448}
+              width={1024}
+              height={1536}
               decoding="async"
               src={productImg}
               fetchPriority="high"
               alt="Vital Glow Acne Fight Face Wash"
+              style={{ aspectRatio: "3 / 4", objectFit: "cover", objectPosition: "50% 50%" }}
               className="w-full rounded-3xl shadow-2xl"
             />
           </div>
@@ -332,97 +335,6 @@ function HeroSection() {
 }
 
 // ─── About ──────────────────────────────────────────────────────────────────
-function AboutSection() {
-  const { ref, visible } = useReveal()
-  return (
-    <section id="about" className="section-space bg-white">
-      <div className="page-container">
-        <div
-          ref={ref}
-          className={`grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-28 items-center reveal ${
-            visible ? "visible" : ""
-          }`}
-        >
-          {/* Text */}
-          <div className="space-y-8 order-2 lg:order-1">
-            <p className="text-xs font-bold tracking-widest uppercase text-[#0b6b7a]">
-              About The Brand
-            </p>
-            <h2
-              className="leading-tight text-[#0e1c20]"
-              style={{
-                fontFamily: "'DM Serif Display', serif",
-                fontSize: "var(--heading-size)",
-              }}
-            >
-              Simple Care.
-              <br />
-              Better Skin.
-            </h2>
-            <p className="text-[#3a5a62] leading-relaxed">
-              Vital Glow was founded on a simple truth — great skin shouldn't
-              require complicated routines. We create targeted, science-backed
-              formulas designed to work with your skin, not against it.
-            </p>
-            <p className="text-[#3a5a62] leading-relaxed">
-              Every product we make is free from sulphates and parabens, rooted
-              in proven actives, and built for everyday use. Clear, confident
-              skin — that's the goal, every single day.
-            </p>
-
-            {/* Values */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-4 border-t border-[#0b6b7a]/8">
-              {[
-                { icon: "◈", title: "Quality", desc: "Proven actives only" },
-                { icon: "◉", title: "Care", desc: "Skin-barrier safe" },
-                { icon: "✦", title: "Innovation", desc: "Science-driven R&D" },
-              ].map((v) => (
-                <div key={v.title} className="space-y-2">
-                  <span className="text-2xl text-[#0b6b7a]">{v.icon}</span>
-                  <p className="font-bold text-[#0e1c20] text-sm">{v.title}</p>
-                  <p className="text-xs text-[#526d75] leading-relaxed">
-                    {v.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Image */}
-          <div className="relative order-1 lg:order-2">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-[#edf5f7]">
-              <img
-                src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=700&h=875&fit=crop&auto=format"
-                loading="lazy"
-                decoding="async"
-                width={700}
-                height={875}
-                alt="Skincare routine"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            {/* Stat badge */}
-            <div className="absolute left-4 bottom-6 lg:-left-6 lg:bottom-14 glass-card rounded-2xl shadow-xl p-5">
-              <p
-                className="text-3xl font-bold text-[#0b6b7a]"
-                style={{ fontFamily: "'DM Serif Display', serif" }}
-              >
-                100%
-              </p>
-              <p className="text-xs text-[#526d75] mt-1 leading-snug">
-                Sulphate &<br />
-                Paraben Free
-              </p>
-            </div>
-            {/* Teal accent slab */}
-            <div className="absolute right-0 lg:-right-4 top-12 w-1 h-24 rounded-full bg-[#0b6b7a]/20" />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ─── Product Detail ──────────────────────────────────────────────────────────
 function ProductDetailSection() {
   const { frameRef, imageRef } = useProductParallax("detail")
@@ -475,12 +387,13 @@ function ProductDetailSection() {
                 className="relative w-full max-w-72 sm:max-w-80 lg:max-w-[22rem]"
               >
                 <img
-                  width={1086}
-                  height={1448}
+                  width={1024}
+                  height={1536}
                   decoding="async"
                   src={productImg}
                   loading="lazy"
                   alt="Vital Glow Acne Fight Face Wash 100ml"
+                  style={{ aspectRatio: "3 / 4", objectFit: "cover", objectPosition: "50% 50%" }}
                   className="w-full rounded-3xl shadow-2xl"
                 />
               </div>
@@ -607,308 +520,6 @@ function BenefitsSection() {
               <p className="text-sm text-[#526d75] leading-relaxed">{c.desc}</p>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Brand Identity ──────────────────────────────────────────────────────────
-function BrandingSection() {
-  const { ref, visible } = useReveal()
-  const brandColors = [
-    { name: "Vital Gold", hex: "#C8860A", bg: "#C8860A" },
-    { name: "Clear Teal", hex: "#0B6B7A", bg: "#0B6B7A" },
-    { name: "Pure White", hex: "#FFFFFF", bg: "#FFFFFF", border: true },
-    { name: "Deep Night", hex: "#0E1C20", bg: "#0E1C20" },
-  ]
-
-  const images = [
-    "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=480&h=300&fit=crop&auto=format",
-    "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=480&h=300&fit=crop&auto=format",
-    "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=480&h=300&fit=crop&auto=format",
-  ]
-
-  return (
-    <section id="brand" className="section-space bg-[#0e1c20] overflow-hidden">
-      <div className="page-container">
-        {/* Heading */}
-        <div
-          ref={ref}
-          className={`text-center mb-20 reveal ${visible ? "visible" : ""}`}
-        >
-          <p className="text-xs font-bold tracking-widest uppercase text-[#69c5cf] mb-5">
-            Brand Identity
-          </p>
-          <h2
-            className="leading-tight text-white"
-            style={{
-              fontFamily: "'DM Serif Display', serif",
-              fontSize: "var(--heading-size)",
-            }}
-          >
-            Made to Feel Fresh.
-            <br />
-            <span className="text-gold-gradient">Designed to Stand Out.</span>
-          </h2>
-        </div>
-
-        {/* Main grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
-          {/* Logo showcase */}
-          <div className={`space-y-8 reveal ${visible ? "visible" : ""} d1`}>
-            <div className="flex items-center justify-center py-16 px-12 rounded-3xl border border-white/6 bg-white/4 backdrop-blur-sm">
-              <img
-                src={logoImg}
-                width={480}
-                height={412}
-                decoding="async"
-                alt="Vital Glow logo"
-                className="w-60 h-auto"
-              />
-            </div>
-            <div>
-              <p
-                className="text-white/90 text-xl leading-relaxed mb-4"
-                style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontStyle: "italic",
-                }}
-              >
-                "Cleanse. Care. Confidence."
-              </p>
-              <p className="text-white/70 text-sm leading-relaxed">
-                The golden Vital Glow mark distils everything we stand for —
-                luminous health, natural vitality, and the warmth of a brand
-                that genuinely cares about your skin.
-              </p>
-            </div>
-          </div>
-
-          {/* Brand details */}
-          <div className={`space-y-10 reveal ${visible ? "visible" : ""} d2`}>
-            {/* Colors */}
-            <div>
-              <p className="text-[10px] font-bold tracking-widest uppercase text-white/70 mb-5">
-                Brand Colors
-              </p>
-              <div className="space-y-3">
-                {brandColors.map((c) => (
-                  <div key={c.name} className="flex items-center gap-4">
-                    <div
-                      className={`w-11 h-11 rounded-xl flex-shrink-0 ${
-                        c.border ? "border border-white/15" : ""
-                      }`}
-                      style={{ backgroundColor: c.bg }}
-                    />
-                    <div>
-                      <p className="text-white/80 font-medium text-sm">
-                        {c.name}
-                      </p>
-                      <p className="text-white/70 text-xs font-mono">{c.hex}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Typography */}
-            <div className="pt-8 border-t border-white/6">
-              <p className="text-[10px] font-bold tracking-widest uppercase text-white/70 mb-5">
-                Typography
-              </p>
-              <div className="space-y-2">
-                <p
-                  className="text-5xl text-white leading-none"
-                  style={{ fontFamily: "'DM Serif Display', serif" }}
-                >
-                  Vital Glow
-                </p>
-                <p className="text-sm text-white/70 mt-2">
-                  DM Serif Display — Display & Headings
-                </p>
-                <p className="text-sm text-white/70 mt-1">
-                  DM Sans — Body, UI & Labels
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Image strip */}
-        <div
-          className={`grid sm:grid-cols-3 gap-4 rounded-3xl overflow-hidden reveal ${
-            visible ? "visible" : ""
-          } d3`}
-        >
-          {images.map((src, i) => (
-            <div key={i} className="aspect-video bg-[#1a2e35] overflow-hidden">
-              <img
-                src={src}
-                loading="lazy"
-                decoding="async"
-                width={480}
-                height={300}
-                alt={
-                  [
-                    "Skincare bottles arranged with botanical ingredients",
-                    "Blue skincare bottle on pastel display blocks",
-                    "White skincare tube in soft natural light",
-                  ][i]
-                }
-                className="w-full h-full object-cover opacity-60 hover:opacity-90 hover:scale-105 transition-all duration-700"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Coming Soon ─────────────────────────────────────────────────────────────
-function ComingSoonSection() {
-  const { ref, visible } = useReveal()
-  const [email, setEmail] = useState("")
-  const [joined, setJoined] = useState(false)
-
-  const upcoming = [
-    { label: "Clarifying Toner", sub: "Balancing & Pore-Refining" },
-    { label: "Gel Moisturiser", sub: "Lightweight Daily Hydration" },
-    { label: "Spot Serum", sub: "Targeted Blemish Treatment" },
-  ]
-
-  return (
-    <section
-      id="coming-soon"
-      className="section-space relative overflow-hidden bg-[#071015]"
-    >
-      {/* Ambient blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full opacity-25"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(11,107,122,0.18) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full opacity-15"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(200,134,10,0.18) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
-      <div className="relative page-container">
-        {/* Heading */}
-        <div
-          ref={ref}
-          className={`text-center mb-16 reveal ${visible ? "visible" : ""}`}
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0b6b7a]/18 border border-[#0b6b7a]/30 rounded-full text-xs font-bold tracking-widest uppercase text-[#5bc0cc] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#5bc0cc] animate-pulse" />
-            Coming Soon
-          </span>
-          <h2
-            className="text-white leading-tight mb-6"
-            style={{
-              fontFamily: "'DM Serif Display', serif",
-              fontSize: "var(--heading-size)",
-            }}
-          >
-            More Care.
-            <br />
-            More Innovation.
-          </h2>
-          <p className="text-white/70 max-w-lg mx-auto leading-relaxed">
-            We're expanding the Vital Glow range. New solutions, same commitment
-            to gentle, effective skincare that works.
-          </p>
-        </div>
-
-        {/* Product placeholder cards */}
-        <div className="grid md:grid-cols-3 gap-5 mb-16">
-          {upcoming.map((p, i) => (
-            <div
-              key={p.label}
-              className={`rounded-3xl border border-white/5 p-10 flex flex-col items-center gap-6 text-center reveal ${
-                visible ? "visible" : ""
-              } d${i + 1}`}
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              {/* Abstract silhouette */}
-              <div className="relative w-20 h-28 rounded-2xl overflow-hidden border border-white/8 bg-gradient-to-b from-white/6 to-white/2 flex items-end justify-center pb-3">
-                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-5 h-3 rounded-t-full bg-white/10" />
-                <div className="w-10 h-1.5 rounded-full bg-white/12" />
-                <div
-                  className="absolute inset-x-0 bottom-0 h-2/3"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(11,107,122,0.12), transparent)",
-                  }}
-                />
-              </div>
-              <div>
-                <p className="font-bold text-white/75 text-base">{p.label}</p>
-                <p className="text-white/70 text-sm mt-1">{p.sub}</p>
-                <span className="inline-block mt-4 text-[10px] font-bold tracking-widest uppercase text-[#69c5cf] px-3 py-1 rounded-full border border-[#0b6b7a]/25 bg-[#0b6b7a]/10">
-                  Coming Soon
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Email capture */}
-        <div className="text-center">
-          <p className="text-white/70 text-sm mb-5">
-            Be the first to know when new products launch.
-          </p>
-          <p id="updates-note" className="text-white/70 text-sm mb-5">
-            Launch updates are not connected yet. This form only validates your
-            email.
-          </p>
-          {joined ? (
-            <p role="status" className="text-[#5bc0cc] font-medium">
-              Email validated locally. It has not been sent; launch updates are
-              not connected yet.
-            </p>
-          ) : (
-            <form
-              className="flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto"
-              onSubmit={(e) => {
-                e.preventDefault()
-                if (email) setJoined(true)
-              }}
-            >
-              <label htmlFor="updates-email" className="sr-only">
-                Email address for launch updates
-              </label>
-              <input
-                id="updates-email"
-                name="email"
-                autoComplete="email"
-                aria-describedby="updates-note"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                className="flex-1 px-5 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-white/22 text-sm focus:outline-none focus:border-[#0b6b7a]/50 transition-colors"
-                required
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-[#0b6b7a] text-white font-semibold rounded-full hover:bg-[#0b8fa0] transition-colors duration-300 text-sm whitespace-nowrap"
-              >
-                Stay Updated
-              </button>
-            </form>
-          )}
         </div>
       </div>
     </section>
@@ -1142,7 +753,7 @@ function ContactSection() {
 
 // ─── Footer ──────────────────────────────────────────────────────────────────
 function Footer() {
-  const footerLinks = ["Product", "About", "Brand", "Coming Soon", "Contact"]
+  const footerLinks = ["Product", "About", "Coming Soon", "Contact"]
   const socials = ["IG", "FB", "TW", "YT"]
 
   return (
@@ -1241,14 +852,14 @@ export default function App() {
       <Nav />
       <main id="main-content" tabIndex={-1}>
         <HeroSection />
-        <AboutSection />
+        <AboutBrand />
         <ProductDetailSection />
         <BenefitsSection />
         <ProductOrbitSection />
         <SkincareEditorialSection />
-        <BrandingSection />
         <ComingSoonSection />
         <ContactSection />
+        <PremiumContactSection />
       </main>
       <Footer />
     </div>
