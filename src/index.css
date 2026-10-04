@@ -55,7 +55,7 @@ textarea { resize: vertical; }
 .skip-link { position: fixed; top: 1rem; left: 1rem; z-index: 100; padding: .75rem 1rem; background: #fff; color: #0b6b7a; transform: translateY(-180%); }
 .skip-link:focus { transform: translateY(0); }
 footer a { display: flex; align-items: center; min-height: 32px; }
-footer button, #contact button:disabled { width: 44px; height: 44px; }
+footer button { width: 44px; height: 44px; }
 @media (max-width: 1023px) {
   #home { min-height: auto; }
   #home > .page-container { gap: 3rem; }

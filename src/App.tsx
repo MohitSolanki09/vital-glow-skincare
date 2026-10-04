@@ -1,3 +1,4 @@
+import { Footer } from "./Footer"
 import { ComingSoonSection } from "./ComingSoon"
 import { PremiumContactSection } from "./PremiumContactSection"
 import { AboutBrand } from "./AboutBrand"
@@ -43,7 +44,7 @@ function Nav() {
     { label: "About", href: "#about" },
     { label: "Product", href: "#product" },
     { label: "Coming Soon", href: "#coming-soon" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "#premium-contact" },
   ]
 
   return (
@@ -446,7 +447,7 @@ function ProductDetailSection() {
             </div>
 
             <a
-              href="#contact"
+              href="#premium-contact"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#0b6b7a] text-white font-semibold rounded-full btn-lift"
             >
               Enquire About This Product
@@ -526,322 +527,6 @@ function BenefitsSection() {
   )
 }
 
-// ─── Contact ─────────────────────────────────────────────────────────────────
-function ContactSection() {
-  const { ref, visible } = useReveal()
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  })
-  const [sent, setSent] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!form.message.trim()) {
-      const field =
-        e.currentTarget.querySelector<HTMLTextAreaElement>("textarea")
-      field?.setCustomValidity("Please enter a message.")
-      field?.reportValidity()
-      return
-    }
-    setSent(true)
-  }
-
-  const info = [
-    { icon: "✉", label: "Email", value: "hello@vitalglow.com" },
-    { icon: "☎", label: "Phone", value: "+91 98765 43210" },
-    { icon: "◉", label: "Website", value: "www.vitalglow.com" },
-    { icon: "▲", label: "Location", value: "Mumbai, India" },
-  ]
-
-  const socials = ["IG", "FB", "TW", "YT"]
-
-  return (
-    <section id="contact" className="section-space bg-white">
-      <div className="page-container">
-        <div
-          ref={ref}
-          className={`grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-28 reveal ${
-            visible ? "visible" : ""
-          }`}
-        >
-          {/* Info */}
-          <div className="space-y-10">
-            <div>
-              <p className="text-xs font-bold tracking-widest uppercase text-[#0b6b7a] mb-4">
-                Contact Us
-              </p>
-              <h2
-                className="text-[#0e1c20] leading-tight mb-4"
-                style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontSize: "var(--heading-size)",
-                }}
-              >
-                Let's Connect.
-              </h2>
-              <p className="text-[#3a5a62] leading-relaxed">
-                Product questions, wholesale enquiries, or just want to say
-                hello — we'd genuinely love to hear from you.
-              </p>
-            </div>
-
-            <div className="space-y-5">
-              {info.map((c) => (
-                <div key={c.label} className="flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#edf5f7] flex items-center justify-center flex-shrink-0">
-                    <span className="text-[#0b6b7a] text-sm">{c.icon}</span>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold tracking-widest uppercase text-[#526d75] mb-0.5">
-                      {c.label}
-                    </p>
-                    {c.label === "Email" ? (
-                      <a
-                        className="text-[#0b6b7a] text-sm underline underline-offset-4"
-                        href={`mailto:${c.value}`}
-                      >
-                        {c.value}
-                      </a>
-                    ) : c.label === "Phone" ? (
-                      <a
-                        className="text-[#0b6b7a] text-sm underline underline-offset-4"
-                        href={`tel:${c.value.replace(/\s/g, "")}`}
-                      >
-                        {c.value}
-                      </a>
-                    ) : (
-                      <p className="text-[#0e1c20] font-medium text-sm">
-                        {c.value}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div>
-              <p className="text-[10px] font-bold tracking-widest uppercase text-[#526d75] mb-4">
-                Follow Us
-              </p>
-              <div className="flex gap-3">
-                {socials.map((s) => (
-                  <button
-                    type="button"
-                    disabled
-                    title="Social profile not connected"
-                    aria-label={`${s} — profile not connected`}
-                    key={s}
-                    className="w-10 h-10 rounded-full border border-[#0b6b7a]/20 text-[#0b6b7a] text-xs font-bold hover:bg-[#0b6b7a] hover:text-white hover:border-transparent transition-all duration-300"
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Form */}
-          <div>
-            {sent ? (
-              <div
-                role="status"
-                className="h-full flex flex-col items-center justify-center text-center gap-5 py-16"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#edf5f7] flex items-center justify-center text-2xl text-[#0b6b7a]">
-                  ✦
-                </div>
-                <h3
-                  className="text-3xl text-[#0e1c20]"
-                  style={{ fontFamily: "'DM Serif Display', serif" }}
-                >
-                  Message validated
-                </h3>
-                <p className="text-[#526d75] text-sm">
-                  Your message was validated locally but was not sent. Please
-                  use the email address shown to contact us.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <p id="contact-note" className="text-sm text-[#526d75]">
-                  This form validates locally; messages are not sent yet. Name,
-                  email and message are required.
-                </p>
-                {[
-                  {
-                    key: "name",
-                    label: "Name",
-                    type: "text",
-                    placeholder: "Your full name",
-                  },
-                  {
-                    key: "email",
-                    label: "Email",
-                    type: "email",
-                    placeholder: "your@email.com",
-                  },
-                  {
-                    key: "phone",
-                    label: "Phone",
-                    type: "tel",
-                    placeholder: "+91 00000 00000",
-                  },
-                ].map((f) => (
-                  <div key={f.key}>
-                    <label
-                      htmlFor={`contact-${f.key}`}
-                      className="block text-[10px] font-bold tracking-widest uppercase text-[#526d75] mb-2"
-                    >
-                      {f.label}
-                    </label>
-                    <input
-                      id={`contact-${f.key}`}
-                      name={f.key}
-                      autoComplete={f.key === "phone" ? "tel" : f.key}
-                      required={f.key !== "phone"}
-                      aria-describedby="contact-note"
-                      type={f.type}
-                      placeholder={f.placeholder}
-                      value={form[(f.key as keyof typeof form)]}
-                      pattern={f.key === "name" ? ".*\\S.*" : undefined}
-                      onChange={(e) =>
-                        setForm({ ...form, [f.key]: e.target.value })
-                      }
-                      className="w-full px-5 py-3.5 rounded-2xl border border-[#0b6b7a]/14 bg-[#f7fafb] text-[#0e1c20] text-sm placeholder-[#b0c8ce] focus:outline-none focus:border-[#0b6b7a]/40 transition-colors"
-                    />
-                  </div>
-                ))}
-                <div>
-                  <label
-                    htmlFor="contact-message"
-                    className="block text-[10px] font-bold tracking-widest uppercase text-[#526d75] mb-2"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    required
-                    aria-describedby="contact-note"
-                    rows={5}
-                    placeholder="How can we help?"
-                    value={form.message}
-                    onChange={(e) => {
-                      e.target.setCustomValidity("")
-                      setForm({ ...form, message: e.target.value })
-                    }}
-                    className="w-full px-5 py-3.5 rounded-2xl border border-[#0b6b7a]/14 bg-[#f7fafb] text-[#0e1c20] text-sm placeholder-[#b0c8ce] focus:outline-none focus:border-[#0b6b7a]/40 transition-colors resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-[#0b6b7a] text-white font-semibold rounded-2xl btn-lift"
-                >
-                  Send Message
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Footer ──────────────────────────────────────────────────────────────────
-function Footer() {
-  const footerLinks = ["Product", "About", "Coming Soon", "Contact"]
-  const socials = ["IG", "FB", "TW", "YT"]
-
-  return (
-    <footer className="bg-[#0e1c20] pt-20 pb-10">
-      <div className="page-container">
-        <div className="grid md:grid-cols-3 gap-12 mb-14">
-          {/* Brand */}
-          <div className="space-y-4">
-            <img
-              src={logoImg}
-              width={480}
-              height={412}
-              decoding="async"
-              alt="Vital Glow"
-              className="h-14 w-auto"
-            />
-            <p className="text-white/70 text-sm leading-relaxed">
-              Strong on Acne. Gentle on You.
-            </p>
-          </div>
-
-          {/* Links */}
-          <div>
-            <p className="text-[10px] font-bold tracking-widest uppercase text-white/70 mb-5">
-              Quick Links
-            </p>
-            <div className="space-y-2.5">
-              {footerLinks.map((l) => (
-                <a
-                  key={l}
-                  href={`#${l.toLowerCase().replace(" ", "-")}`}
-                  className="block text-white/70 text-sm hover:text-white transition-colors duration-300"
-                >
-                  {l}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Social + legal */}
-          <div className="space-y-8">
-            <div>
-              <p className="text-[10px] font-bold tracking-widest uppercase text-white/70 mb-5">
-                Follow Us
-              </p>
-              <div className="flex gap-3">
-                {socials.map((s) => (
-                  <button
-                    type="button"
-                    disabled
-                    title="Social profile not connected"
-                    aria-label={`${s} — profile not connected`}
-                    key={s}
-                    className="w-9 h-9 rounded-full border border-white/10 text-white/70 text-xs font-bold hover:bg-[#0b6b7a] hover:text-white hover:border-transparent transition-all duration-300"
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="space-y-2">
-              {["Privacy Policy", "Terms & Conditions"].map((l) => (
-                <a
-                  key={l}
-                  aria-disabled="true"
-                  title="Policy not published yet"
-                  className="block text-white/70 text-xs hover:text-white/60 transition-colors duration-300"
-                >
-                  {l}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-white/6 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/70 text-xs">
-            © 2024 Vital Glow. All rights reserved.
-          </p>
-          <p className="text-white/70 text-xs">
-            Crafted with care. Made in India.
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
 // ─── App ─────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
@@ -858,10 +543,11 @@ export default function App() {
         <ProductOrbitSection />
         <SkincareEditorialSection />
         <ComingSoonSection />
-        <ContactSection />
+
         <PremiumContactSection />
       </main>
       <Footer />
     </div>
   )
 }
+

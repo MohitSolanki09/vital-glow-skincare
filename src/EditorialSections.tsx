@@ -66,7 +66,7 @@ export function SkincareEditorialSection() {
           <div className="vg-editorial-visual">
             <div className="vg-product-circle"><img src={productImg} width={1086} height={1448} loading="lazy" alt="Acne Fight face wash" /></div>
             <span className="vg-circle-accent"><img src={logoImg} width={64} height={55} alt="" /></span>
-            <a href="#contact" className="vg-join-pill btn-lift">Let's Talk <Arrow /></a>
+            <a href="#premium-contact" className="vg-join-pill btn-lift">Let's Talk <Arrow /></a>
           </div>
         </div>
       </div>
