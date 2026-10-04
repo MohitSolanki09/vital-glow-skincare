@@ -1,9 +1,15 @@
+import gmpStamp from "./assets/gmp-certified.png"
+import isoStamp from "./assets/iso-9001-2015-certified.png"
+import fdaStamp from "./assets/fda-approved.png"
 import { useEffect, useRef, useState } from "react"
 import { useReveal } from "./useMotion"
 import "./footer.css"
 
-// Populate only with supplied, authentic certification artwork.
-const certifications: { src: string; alt: string; label: string }[] = []
+const certifications = [
+  { src: gmpStamp, alt: "GMP Certified - Good Manufacturing Practice", label: "GMP CERTIFIED", className: "" },
+  { src: isoStamp, alt: "ISO 9001:2015 Certified Company", label: "ISO 9001:2015", className: "vg-footer__stamp--iso" },
+  { src: fdaStamp, alt: "FDA Approved", label: "FDA APPROVED", className: "" },
+]
 const links = [["Home", "home"], ["About", "about"], ["Our Product", "product"], ["Why Vital Glow", "why-vital-glow"], ["Contact", "premium-contact"]]
 
 export function Footer() {
@@ -46,7 +52,7 @@ export function Footer() {
           <nav aria-label="Footer navigation"><h3>EXPLORE</h3><div className="vg-footer__links">{links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}<span aria-hidden="true">↗</span></a>)}</div></nav>
           <div><h3>GET IN TOUCH</h3><dl className="vg-footer__contact"><div><dt>EMAIL</dt><dd><a href="mailto:vitalglow111@gmail.com">vitalglow111@gmail.com</a></dd></div><div><dt>PHONE</dt><dd><a href="tel:+919313494513">+91 93134 94513</a></dd></div><div><dt>ADDRESS</dt><dd><address>Lalpur Main Road<br />Near BOB ATM, Dared<br />Jamnagar - 361012</address></dd></div></dl></div>
         </div>
-        <div className={`vg-footer__quality ${reveal} d2`}><h3><span aria-hidden="true">✦</span> QUALITY YOU CAN TRUST</h3>{certifications.length > 0 && <div className="vg-footer__stamps">{certifications.map(stamp => <figure key={stamp.src}><img src={stamp.src} alt={stamp.alt} loading="lazy" /><figcaption>{stamp.label}</figcaption></figure>)}</div>}</div>
+        <div className={`vg-footer__quality ${reveal} d2`}><h3><span aria-hidden="true">✦</span> QUALITY YOU CAN TRUST</h3>{certifications.length > 0 && <div className="vg-footer__stamps">{certifications.map((stamp, index) => <figure key={stamp.src} className={`${reveal} d${index + 1}`}><img className={stamp.className} src={stamp.src} alt={stamp.alt} loading="lazy" /><figcaption>{stamp.label}</figcaption></figure>)}</div>}</div>
       </div>
       <div className="vg-footer__credit"><span aria-hidden="true">✦</span><p>Marketing By <strong>Kanaiya Medical</strong></p></div>
       <div className="page-container vg-footer__bottom"><p>© 2026 Vital Glow. All rights reserved.</p><a href="#home">BACK TO TOP <span aria-hidden="true">↑</span></a></div>

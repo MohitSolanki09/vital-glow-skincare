@@ -22,7 +22,7 @@
 .vg-footer__quality h3 { display: flex; gap: .8rem; align-items: center; border-bottom: 1px solid #ffffff20; padding-bottom: 1.3rem; margin-bottom: 0; }
 .vg-footer__quality h3 span { color: #d9ac58; }
 .vg-footer__stamps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding-top: 2.5rem; text-align: center; }
-.vg-footer__stamps img { width: 140px; height: 140px; object-fit: contain; margin-inline: auto; transition: transform .25s ease; }
+.vg-footer__stamps img { width: 180px; height: 180px; object-fit: contain; margin-inline: auto; transition: transform .25s ease; }
 .vg-footer__stamps figure:hover img { transform: translateY(-2px); }
 .vg-footer figcaption { margin-top: 1rem; color: #b6c8cb; font-size: .75rem; }
 .vg-footer__credit { display: flex; justify-content: center; align-items: center; gap: .8rem; padding: 1.5rem var(--gutter); background: #132a2e; border-block: 1px solid #ffffff18; }
@@ -54,3 +54,6 @@
   .vg-whatsapp { width: 48px; height: 48px; right: max(16px, env(safe-area-inset-right)); }
 }
 @media (prefers-reduced-motion: reduce) { .vg-whatsapp:hover, .vg-footer__bottom a:hover span, .vg-footer__stamps figure:hover img { transform: none; } }
+
+.vg-footer__stamps img.vg-footer__stamp--iso { width: 230px; }
+@media (max-width: 399px) { .vg-footer__stamps { grid-template-columns: 1fr; } }

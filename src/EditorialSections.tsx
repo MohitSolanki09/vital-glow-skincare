@@ -1,3 +1,4 @@
+import { CTAArrow } from "./CTAArrow"
 import { useReveal } from "./useMotion"
 import productImg from "./assets/product.png"
 import editorialPoster from "./assets/acne-fight-water-poster.png"
@@ -24,7 +25,7 @@ export function ProductOrbitSection() {
           <span className="vg-review-pill"><span aria-hidden="true">✦ ✦ ✦</span> CARE IN EVERY DROP</span>
           <h2 id="vg-orbit-title"><em>Why Choose</em><br />Our Product?</h2>
           <p>Thoughtful ingredients. A simple daily ritual.<br />Discover skincare made with your glow in mind.</p>
-          <a className="vg-dark-cta btn-lift" href="#product">Explore Acne Fight <Arrow /></a>
+          <a className="vg-cta" href="#product">Explore Acne Fight <CTAArrow /></a>
         </div>
         {benefits.map((benefit, index) => (
           <article key={benefit.title} className={`vg-orbit-card vg-orbit-card-${index + 1} reveal d${index + 1} ${visible ? "visible" : ""}`}>
@@ -66,7 +67,7 @@ export function SkincareEditorialSection() {
           <div className="vg-editorial-visual">
             <div className="vg-product-circle"><img src={productImg} width={1086} height={1448} loading="lazy" alt="Acne Fight face wash" /></div>
             <span className="vg-circle-accent"><img src={logoImg} width={64} height={55} alt="" /></span>
-            <a href="#premium-contact" className="vg-join-pill btn-lift">Let's Talk <Arrow /></a>
+            <a href="#premium-contact" className="vg-join-pill vg-cta vg-cta--secondary">Let's Talk <CTAArrow /></a>
           </div>
         </div>
       </div>

@@ -24,11 +24,20 @@
 .premium-contact__field--phone,.premium-contact__field--message { grid-column: 1/-1; }
 .premium-contact__field label { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #526d75; margin-bottom: 6px; }
 .premium-contact__field input,.premium-contact__field textarea { display: block; width: 100%; border: 0; border-bottom: 1px solid #0b6b7a33; border-radius: 0; background: transparent; padding: 11px 0 14px; color: #0e1c20; transition: border-color .2s; }
-.premium-contact__field input:focus,.premium-contact__field textarea:focus { border-bottom-color: #0b6b7a; outline: 2px solid #0b6b7a22; outline-offset: 4px; }
+.premium-contact__field input:focus,.premium-contact__field textarea:focus,.premium-contact__field input:focus-visible,.premium-contact__field textarea:focus-visible { border-color: transparent; border-bottom-color: #0b6b7a; outline: none; box-shadow: none; background: transparent; }
+.premium-contact__field input:autofill,.premium-contact__field textarea:autofill { background-clip: text; -webkit-text-fill-color: #0e1c20; box-shadow: none; }
 .premium-contact__submit-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: 30px; }
-.premium-contact__submit { display: inline-flex; align-items: center; gap: 25px; border-radius: 40px; background: #0b6b7a; color: white; padding: 7px 7px 7px 22px; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
-.premium-contact__submit > span { display: grid; place-items: center; background: white; color: #0b6b7a; width: 34px; height: 34px; border-radius: 50%; font-size: 20px; }
 .premium-contact__submit-row p,.premium-contact__status { font-size: 11px; line-height: 1.7; color: #526d75; }
 .premium-contact__status:not(:empty) { margin-top: 18px; }
 @media (max-width: 900px) { .premium-contact__intro { grid-template-columns: 1fr; gap: 42px; margin-bottom: 42px; } .premium-contact__panel { grid-template-columns: 1fr; } .premium-contact__invitation { border-right: 0; border-bottom: 1px solid #0b6b7a22; } .premium-contact__contour { left: auto; right: 20px; bottom: 30px; width: 220px; opacity: .5; } }
 @media (max-width: 479px) { .premium-contact h2 { font-size: clamp(36px,10vw,46px); } .premium-contact__details dl > div { grid-template-columns: 72px 1fr; gap: 10px; } .premium-contact__details dd { font-size: 13px; } .premium-contact__fields { grid-template-columns: 1fr; } .premium-contact__invitation { padding: 28px 24px 54px; } .premium-contact__form { padding: 28px 24px; } .premium-contact__contour { width: 140px; height: 55px; bottom: 4px; right: 16px; } .premium-contact__contour span { font-size: 15px; } }
+
+/* Native select keeps keyboard/touch behavior; the display layer wraps long names. */
+.premium-contact__field--product { grid-column: 1 / -1; }
+.premium-contact__select-wrap { position: relative; }
+.premium-contact__select-wrap select { position: absolute; inset: 0; width: 100%; height: 100%; appearance: none; border: 0; border-bottom: 1px solid #0b6b7a33; border-radius: 0; background: transparent; color: transparent; font: inherit; font-size: 16px; cursor: pointer; transition: border-color .2s; }
+.premium-contact__select-wrap select:focus,.premium-contact__select-wrap select:focus-visible { outline: none; box-shadow: none; border-bottom-color: #0b6b7a; background: transparent; }
+.premium-contact__select-wrap option { color: #0e1c20; background: #fff; }
+.premium-contact__select-value { display: block; padding: 11px 28px 15px 0; font-size: 16px; line-height: 1.5; color: #0e1c20; overflow-wrap: anywhere; pointer-events: none; }
+.premium-contact__select-value[data-placeholder="true"] { color: #607981; }
+.premium-contact__select-chevron { position: absolute; right: 0; top: 15px; width: 16px; height: 16px; color: #0b6b7a; pointer-events: none; }

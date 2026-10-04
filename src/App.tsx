@@ -1,3 +1,5 @@
+import { useSmoothScroll } from "./useSmoothScroll"
+import { CTAArrow } from "./CTAArrow"
 import { Footer } from "./Footer"
 import { ComingSoonSection } from "./ComingSoon"
 import { PremiumContactSection } from "./PremiumContactSection"
@@ -79,9 +81,9 @@ function Nav() {
           ))}
           <a
             href="#product"
-            className="px-5 py-2.5 bg-[#0b6b7a] text-white text-sm font-semibold rounded-full btn-lift"
+            className="vg-cta"
           >
-            Shop Now
+            Shop Now <CTAArrow />
           </a>
         </div>
 
@@ -134,10 +136,10 @@ function Nav() {
           ))}
           <a
             href="#product"
-            className="mt-1 px-5 py-3 bg-[#0b6b7a] text-white text-sm font-semibold rounded-full text-center"
+            className="mt-1 vg-cta"
             onClick={() => setOpen(false)}
           >
-            Shop Now
+            Shop Now <CTAArrow />
           </a>
         </div>
       </div>
@@ -214,15 +216,15 @@ function HeroSection() {
           <div className="flex flex-wrap gap-4 pt-1">
             <a
               href="#product"
-              className="px-7 py-3.5 bg-[#0b6b7a] text-white font-semibold rounded-full btn-lift"
+              className="vg-cta"
             >
-              Shop Now
+              Shop Now <CTAArrow />
             </a>
             <a
               href="#product"
-              className="px-7 py-3.5 border border-[#0b6b7a]/30 text-[#0b6b7a] font-semibold rounded-full hover:bg-[#0b6b7a]/6 transition-colors duration-300"
+              className="vg-cta vg-cta--secondary"
             >
-              Explore Product
+              Explore Product <CTAArrow />
             </a>
           </div>
 
@@ -448,10 +450,10 @@ function ProductDetailSection() {
 
             <a
               href="#premium-contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#0b6b7a] text-white font-semibold rounded-full btn-lift"
+              className="vg-cta"
             >
               Enquire About This Product
-              <span className="text-lg leading-none">→</span>
+              <CTAArrow />
             </a>
           </div>
         </div>
@@ -529,6 +531,7 @@ function BenefitsSection() {
 
 // ─── App ─────────────────────────────────────────────────────────────────────
 export default function App() {
+  useSmoothScroll()
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
       <a href="#main-content" className="skip-link">

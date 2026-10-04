@@ -15,7 +15,7 @@
   --section-space: clamp(4rem, 10vw, 8rem);
   scroll-padding-top: 6rem;
 }
-@media (prefers-reduced-motion: no-preference) { :root { scroll-behavior: smooth; } }
+
 body { margin: 0; min-width: 0; }
 * { box-sizing: border-box; }
 img { max-width: 100%; }

@@ -9,8 +9,6 @@
 .vg-orbit-copy h2 { font: 400 clamp(44px,4.8vw,64px)/.99 var(--font-display); margin: 22px 0; letter-spacing: -.035em; }
 .vg-orbit-copy h2 em { font-weight: 400; }
 .vg-orbit-copy p { font-size: 12px; line-height: 1.6; color: #526d75; margin: 0 0 28px; }
-.vg-dark-cta { display: inline-flex; align-items: center; gap: 22px; padding: 6px 7px 6px 23px; background: #0b6b7a; color: white; border-radius: 40px; font-size: 10px; text-transform: uppercase; letter-spacing: .035em; }
-.vg-dark-cta > span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #fffefa; color: #0b6b7a; font-size: 20px; }
 .vg-orbit-card { position: absolute; width: 21%; min-height: 246px; padding: 30px 24px; text-align: center; background: #fffef8; border-radius: 24px; box-shadow: inset 0 0 0 1px #0b6b7a14, 0 8px 24px #0e1c2005; z-index: 2; }
 .vg-orbit-card-1 { left: 3%; top: 10%; }
 .vg-orbit-card-2 { right: 1%; top: 14%; }
@@ -35,7 +33,7 @@
 .vg-editorial-center { border-right: 1px solid #0b6b7a26; }
 .vg-editorial-statement,.vg-formula-panel { padding: 30px; border-bottom: 1px solid #0b6b7a26; }
 .vg-outline-pill { display: inline-flex; align-items: center; gap: 20px; font-size: 8px; color: #0b6b7a; background: #ffffffb8; border: 1px solid #0b6b7a40; padding: 3px 4px 3px 15px; border-radius: 30px; }
-.vg-outline-pill > span,.vg-join-pill > span { border-radius: 50%; width: 19px; height: 19px; display: grid; place-items: center; background: #0b6b7a; color: white; font-size: 12px; }
+.vg-outline-pill > span { border-radius: 50%; width: 19px; height: 19px; display: grid; place-items: center; background: #0b6b7a; color: white; font-size: 12px; }
 .vg-editorial-statement p { font: 400 clamp(23px,2.4vw,33px)/1.12 var(--font-display); margin-top: 36px; letter-spacing: -.025em; }
 .vg-editorial-statement p > span { color: #526d75; }
 .vg-wordmark-panel { display: grid; place-items: center; padding: 26px; }
@@ -52,7 +50,7 @@
 .vg-product-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .vg-circle-accent { position: absolute; top: 35px; left: calc(50% + 45px); width: 48px; height: 48px; border: 5px solid #fffefa; border-radius: 50%; background: #fff8e9; display: grid; place-items: center; }
 .vg-circle-accent img { width: 32px; height: auto; }
-.vg-join-pill { position: absolute; bottom: 35px; left: calc(50% - 100px); display: inline-flex; align-items: center; gap: 23px; background: #fffefa; color: #0b6b7a; box-shadow: inset 0 0 0 1px #0b6b7a1a, 0 4px 16px #0e1c2008; padding: 5px 6px 5px 22px; border-radius: 30px; font-size: 10px; }
+.vg-join-pill { position: absolute; bottom: 35px; left: calc(50% - 100px); }
 @media (hover:hover) and (prefers-reduced-motion:no-preference) { .vg-orbit-card:hover { translate: 0 -6px; } .vg-orbit-card { transition-property: opacity,transform,translate; } }
 @media (max-width: 1023px) {
   .vg-orbit-stage { height: 780px; }

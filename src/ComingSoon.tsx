@@ -1,3 +1,4 @@
+import { CTAArrow } from "./CTAArrow"
 import { useState } from "react"
 import { useReveal } from "./useMotion"
 import { ComingSoonProductCard, type UpcomingProduct } from "./ComingSoonProductCard"
@@ -33,7 +34,7 @@ export function ComingSoonSection() {
             <form onSubmit={event => { event.preventDefault(); setValidated(true) }}>
               <label className="sr-only" htmlFor="updates-email">Email address for launch updates</label>
               <input id="updates-email" name="email" type="email" autoComplete="email" required placeholder="your@email.com" aria-describedby="updates-note" value={email} onChange={event => { setEmail(event.target.value); setValidated(false) }} />
-              <button type="submit" className="btn-lift">Stay Updated <span aria-hidden="true">↗</span></button>
+              <button type="submit" className="vg-cta">Stay Updated <CTAArrow /></button>
             </form>
             <p id="updates-note" className="launch-status" role="status">{validated ? "Email validated locally. It has not been sent; launch updates are not connected yet." : "Launch updates are not connected yet. This form only validates your email."}</p>
           </div>
