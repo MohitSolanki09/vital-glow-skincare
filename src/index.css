@@ -46,7 +46,7 @@ textarea { resize: vertical; }
 }
 .mobile-menu { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows .4s ease, opacity .4s ease, visibility 0s .4s; }
 .mobile-menu[data-open='true'] { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition-delay: 0s; }
-.mobile-menu-content { min-height: 0; overflow-y: auto; max-height: calc(100dvh - 76px); display: flex; flex-direction: column; padding-inline: var(--gutter); }
+.mobile-menu-content { min-height: 0; overflow-y: auto; max-height: calc(100vh - 76px); max-height: calc(100dvh - 76px); display: flex; flex-direction: column; padding-inline: var(--gutter); }
 .mobile-menu-content > :first-child { margin-top: 1.5rem; }
 .mobile-menu-content > :last-child { margin-bottom: 1.5rem; }
 @media (min-width: 1024px) { .mobile-menu { display: none; } }
@@ -71,6 +71,10 @@ footer button { width: 44px; height: 44px; }
   #home > .absolute.bottom-10 { display: none; }
   #home .text-lg { font-size: 1rem; }
   #coming-soon .p-10 { padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 359px) {
+  .hero-product > .absolute .glass-card { padding-inline: 10px; }
 }
 
 /* Timings and offsets measured from the original Figma Make preview. */

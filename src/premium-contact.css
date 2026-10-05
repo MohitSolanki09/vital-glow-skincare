@@ -23,7 +23,7 @@
 .premium-contact__field { min-width: 0; }
 .premium-contact__field--phone,.premium-contact__field--message { grid-column: 1/-1; }
 .premium-contact__field label { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #526d75; margin-bottom: 6px; }
-.premium-contact__field input,.premium-contact__field textarea { display: block; width: 100%; border: 0; border-bottom: 1px solid #0b6b7a33; border-radius: 0; background: transparent; padding: 11px 0 14px; color: #0e1c20; transition: border-color .2s; }
+.premium-contact__field input,.premium-contact__field textarea { display: block; width: 100%; -webkit-appearance: none; appearance: none; border: 0; border-bottom: 1px solid #0b6b7a33; border-radius: 0; background: transparent; padding: 11px 0 14px; color: #0e1c20; transition: border-color .2s; }
 .premium-contact__field input:focus,.premium-contact__field textarea:focus,.premium-contact__field input:focus-visible,.premium-contact__field textarea:focus-visible { border-color: transparent; border-bottom-color: #0b6b7a; outline: none; box-shadow: none; background: transparent; }
 .premium-contact__field input:autofill,.premium-contact__field textarea:autofill { background-clip: text; -webkit-text-fill-color: #0e1c20; box-shadow: none; }
 .premium-contact__submit-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: 30px; }
