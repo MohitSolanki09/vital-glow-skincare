@@ -1,4 +1,5 @@
 import { CTAArrow } from "./CTAArrow"
+import { useSmoothScroll } from "./useSmoothScroll"
 import { Footer } from "./Footer"
 import { ComingSoonSection } from "./ComingSoon"
 import { PremiumContactSection } from "./PremiumContactSection"
@@ -530,6 +531,7 @@ function BenefitsSection() {
 
 // ─── App ─────────────────────────────────────────────────────────────────────
 export default function App() {
+  useSmoothScroll()
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
       <a href="#main-content" className="skip-link">
