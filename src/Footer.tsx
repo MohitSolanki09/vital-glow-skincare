@@ -47,7 +47,7 @@ export function Footer() {
     <footer ref={footerRef} className="vg-footer" aria-label="Vital Glow footer">
       <div ref={ref} className="page-container">
         <div className={`vg-footer__brand ${reveal}`}>
-          <div><a href="#home" className="vg-footer__logo" aria-label="Vital Glow — Go to Home"><img src={logoImg} width={480} height={412} alt="Vital Glow" loading="lazy" decoding="async" /></a><p>Simple care. Better skin.</p></div>
+          <div><a href="#home" className="vg-footer__logo vg-logo-trademark" aria-label="Vital Glow — Go to Home"><img src={logoImg} width={480} height={412} alt="Vital Glow" loading="lazy" decoding="async" /></a><p>Simple care. Better skin.</p></div>
           <h2>YOUR DAILY CARE,<br /><em>THOUGHTFULLY MADE.</em></h2>
         </div>
         <div className={`vg-footer__information ${reveal} d1`}>
