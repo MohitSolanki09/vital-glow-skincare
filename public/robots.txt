@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vitalglow111.com/sitemap.xml

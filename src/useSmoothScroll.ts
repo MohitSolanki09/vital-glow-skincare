@@ -16,7 +16,15 @@ export function useSmoothScroll() {
       syncTouch: false,
       // The existing preference hook owns the instance lifecycle.
       respectReducedMotion: false,
-      prevent: node => !!node.closest("select, textarea, .mobile-menu-content"),
+      prevent: node => {
+        const nativeScroll = !!node.closest("select, textarea, .mobile-menu-content")
+        // Yield any remaining momentum before native scrolling can move the page.
+        // Otherwise the next Lenis frame can overwrite that native position.
+        if (nativeScroll && lenis.isScrolling === "smooth") {
+          lenis.scrollTo(lenis.actualScroll, { immediate: true })
+        }
+        return nativeScroll
+      },
     })
 
     const onAnchorClick = (event: MouseEvent) => {
@@ -35,9 +43,21 @@ export function useSmoothScroll() {
       lenis.scrollTo(target, { onComplete: () => target.focus({ preventScroll: true }) })
     }
 
+    let resumeAfterModal = false
+    const onContactModal = () => {
+      if (document.querySelector(".contact-submission-dialog[open]")) {
+        if (!lenis.isStopped) { resumeAfterModal = true; lenis.stop() }
+      } else if (resumeAfterModal) {
+        resumeAfterModal = false
+        lenis.start()
+      }
+    }
+    onContactModal()
+    window.addEventListener("vital-glow:contact-modal", onContactModal)
     document.addEventListener("click", onAnchorClick)
     return () => {
       document.removeEventListener("click", onAnchorClick)
+      window.removeEventListener("vital-glow:contact-modal", onContactModal)
       lenis.destroy()
     }
   }, [reduced])

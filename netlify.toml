@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+# Configure vitalglow111.com as the primary domain in Netlify Domain management.
+# Let Netlify manage its www alias and HTTPS redirects; do not duplicate them here.

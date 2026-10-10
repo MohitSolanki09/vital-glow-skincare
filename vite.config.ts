@@ -12,6 +12,9 @@ const siteConfiguration = JSON.parse(
 export default defineConfig(({ mode }) => {
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === "development"
+  // Only production builds are public; Netlify branch/PR previews stay excluded.
+  const indexable = mode === "production" &&
+    (!process.env.CONTEXT || process.env.CONTEXT === "production")
 
   return {
     base: process.env.FIGMA_PUBLIC_URL
@@ -24,7 +27,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tailwindcss(),
-      figmaSiteConfiguration(siteConfiguration),
+      figmaSiteConfiguration({ ...siteConfiguration, robots: { index: indexable } }),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: "/src/**/*.stories.{ts,tsx,js,jsx}" }),
@@ -95,11 +98,11 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
     return html.replace(`<!-- ${slotName} -->`, content)
   }
 
-  const title = config.title ?? "Vital Glow | Everyday Skincare"
+  const title = "Vital Glow | Thoughtful Skincare & Daily Skin Care"
   const description =
-    "Discover Vital Glow Acne Fight Face Wash and our approach to simple, everyday skincare. Explore the formula, brand and upcoming range."
+    "Discover Vital Glow skincare, thoughtfully developed for your daily routine. Explore our products, brand philosophy, and upcoming skincare collection."
   const favicon = config.icons?.icon ?? ""
-  const socialImage = config.openGraph?.image ?? ""
+  const socialImage = "https://vitalglow111.com/social/vital-glow-acne-fight.png"
   const language = sanitizeHtmlValue(config.language) || "en"
   const googleAnalyticsId = sanitizeHtmlValue(
     config.analytics?.googleAnalyticsId,
@@ -154,10 +157,12 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
             injectTo: "head",
           })
         }
-        if (config.robots?.index === false) {
+        {
           tags.push({
             tag: "meta",
-            attrs: { name: "robots", content: "noindex, nofollow" },
+            attrs: { name: "robots", content: config.robots?.index === false
+              ? "noindex, nofollow"
+              : "index, follow, max-image-preview:large" },
             injectTo: "head",
           })
         }
@@ -184,6 +189,16 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
         }
         if (socialImage) {
           tags.push(
+            {
+              tag: "meta",
+              attrs: { name: "twitter:title", content: title },
+              injectTo: "head",
+            },
+            {
+              tag: "meta",
+              attrs: { name: "twitter:description", content: description },
+              injectTo: "head",
+            },
             {
               tag: "meta",
               attrs: { property: "og:image", content: socialImage },

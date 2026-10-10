@@ -18,6 +18,10 @@
 .vg-footer dd { font-size: .95rem; line-height: 1.75; min-width: 0; }
 .vg-footer dd a { overflow-wrap: anywhere; }
 .vg-footer address { font-style: normal; padding-top: .2rem; }
+.vg-footer__social { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+.vg-footer .vg-footer__social-link { display: grid; place-items: center; width: 44px; height: 44px; flex: 0 0 44px; color: #ffffff; border-radius: 50%; }
+.vg-footer__social-link svg { width: 22px; height: 22px; }
+.vg-footer a.vg-footer__social-link:hover, .vg-footer a.vg-footer__social-link:focus-visible { color: #e4bd76; }
 .vg-footer__quality { padding-bottom: 2.5rem; }
 .vg-footer__quality h3 { display: flex; gap: .8rem; align-items: center; border-bottom: 1px solid #ffffff20; padding-bottom: 1.3rem; margin-bottom: 0; }
 .vg-footer__quality h3 span { color: #d9ac58; }
