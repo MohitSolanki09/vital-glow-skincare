@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon"
 import { useEffect, useState } from "react"
 import { useReducedMotion, useReveal } from "./useMotion"
 
@@ -32,7 +33,7 @@ export function ComingSoonProductCard({ product, index }: { product: UpcomingPro
           <span className="launch-product-name">{product.name}</span>
           <span className="launch-subtitle">{product.subtitle}</span>
           <span className="launch-detail-slot"><span id={`launch-detail-${index}`} hidden={!revealed}>New Vital Glow formula. Coming soon.</span></span>
-          <span className="launch-action" aria-live="polite">{revealed ? "Revealed" : phase === "shaking" ? "Revealing…" : <><span className="launch-touch-label">Tap to reveal</span><span className="launch-pointer-label">Click to reveal</span></>}<span aria-hidden="true">{revealed ? "✓" : "↗"}</span></span>
+          <span className="launch-action" aria-live="polite">{revealed ? "Revealed" : phase === "shaking" ? "Revealing…" : <><span className="launch-touch-label">Tap to reveal</span><span className="launch-pointer-label">Click to reveal</span></>}<span aria-hidden="true">{revealed ? "✓" : <ArrowIcon />}</span></span>
         </span>
       </button>
     </div>

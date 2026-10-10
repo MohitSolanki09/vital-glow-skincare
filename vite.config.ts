@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
       ? `${process.env.FIGMA_PUBLIC_URL}/`
       : "/",
     build: {
+      rollupOptions: { input: { main: fileURLToPath(new URL('./index.html', import.meta.url)), notFound: fileURLToPath(new URL('./404.html', import.meta.url)) } },
       sourcemap: emitSourcemaps ? "inline" : false,
       minify: !emitSourcemaps,
     },
@@ -137,6 +138,8 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
     transformIndexHtml: {
       order: "pre",
       handler(html) {
+        // The standalone error document owns its metadata; homepage SEO is unchanged.
+        if (html.includes('<title>404 | Page Not Found | Vital Glow</title>')) return html
         let result = html
         result = replaceHtmlCommentSlot(result, "figma:lang", language)
         result = replaceHtmlCommentSlot(

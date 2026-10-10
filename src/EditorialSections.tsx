@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon"
 import { CTAArrow } from "./CTAArrow"
 import { useReveal } from "./useMotion"
 import productImg from "./assets/product.png"
@@ -12,7 +13,7 @@ const benefits = [
   { icon: "❀", title: "Carefully Considered", text: "Quality, care and innovation at the heart of every Vital Glow formula." },
 ]
 
-function Arrow() { return <span aria-hidden="true">↗</span> }
+function Arrow() { return <span aria-hidden="true"><ArrowIcon /></span> }
 
 export function ProductOrbitSection() {
   const { ref, visible } = useReveal(0.08)

@@ -1,3 +1,4 @@
+import { ArrowIcon } from "./ArrowIcon"
 import { CTAArrow } from "./CTAArrow"
 import { useEffect, useRef, useState } from "react"
 import { ContactSubmissionDialog, type DialogState } from "./ContactSubmissionDialog"
@@ -59,7 +60,7 @@ export function PremiumContactSection({ sendEnquiry = submitEnquiry }: { sendEnq
           </div>
           <div className="premium-contact__details">
             <p className={`premium-contact__label ${reveal}`}>Get in touch</p>
-            <dl>{details.map((detail, index) => <div key={detail.label} className={`${reveal} d${index + 1}`}><dt>{detail.label}</dt><dd>{detail.href ? <a href={detail.href}>{detail.value}<span aria-hidden="true">↗</span></a> : <span style={{ whiteSpace: "pre-line" }}>{detail.value}</span>}</dd></div>)}</dl>
+            <dl>{details.map((detail, index) => <div key={detail.label} className={`${reveal} d${index + 1}`}><dt>{detail.label}</dt><dd>{detail.href ? <a href={detail.href}>{detail.value}<span aria-hidden="true"><ArrowIcon /></span></a> : <span style={{ whiteSpace: "pre-line" }}>{detail.value}</span>}</dd></div>)}</dl>
           </div>
         </div>
         <div ref={panel.ref} className={`premium-contact__panel reveal ${panel.visible ? "visible" : ""}`}>

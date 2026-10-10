@@ -1,0 +1,30 @@
+.lost-glow { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; background: #0e1c20; color: #f4eee4; padding: 24px clamp(24px, 5vw, 72px); font-family: 'DM Sans', sans-serif; }
+.lost-glow__header { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; max-width: 1296px; margin-inline: auto; }
+.lost-glow__header img { display: block; width: auto; height: 44px; }
+.lost-glow__header > span { font-size: 10px; letter-spacing: .2em; color: #b4c1be; }
+.lost-glow__main { width: 100%; max-width: 640px; margin: auto; padding: 36px 0; text-align: center; }
+.lost-glow__eyebrow { font-size: clamp(10px, .8vw, 11px); letter-spacing: .18em; color: #c8860a; margin: 0 0 18px; }
+.lost-glow h1 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.2vw, 46px); font-weight: 400; line-height: 1.13; letter-spacing: -.02em; margin: 0; }
+.lost-glow h1 em { font-weight: 400; }
+.lost-glow__description { max-width: 360px; margin: 18px auto 0; font-size: clamp(13px, 1.1vw, 16px); line-height: 1.7; color: #b4c1be; }
+.lost-glow__art { position: relative; width: min(100%, 400px); height: clamp(140px, 15vw, 200px); display: grid; place-items: center; margin: 12px auto 0; }
+.lost-glow__art > span { font-family: 'DM Serif Display', serif; font-size: clamp(100px, 12vw, 172px); line-height: 1; letter-spacing: -.035em; color: #f4eee4; background: linear-gradient(125deg, #f4eee4 30%, #c8860a 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.lost-glow__art svg { position: absolute; inset: 0; width: 100%; height: 100%; stroke: #c8860a; stroke-width: .7; opacity: .65; }
+.lost-glow__caption { margin: 0; font-size: 10px; letter-spacing: .2em; color: #b4c1be; }
+.lost-glow__actions { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 28px; }
+.lost-glow__actions a { font-size: 13px; }
+.lost-glow__primary { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 46px; padding: 0 24px; border-radius: 999px; background: #f4eee4; color: #0e1c20; text-decoration: none; }
+.lost-glow__primary span { transition: transform 300ms ease; }
+.lost-glow__primary:is(:hover, :focus-visible) span { transform: translateX(4px); }
+.lost-glow__secondary { color: #f4eee4; text-decoration: underline; text-underline-offset: 6px; text-decoration-color: #b4c1be80; padding-block: 13px; transition: color 250ms ease; }
+.lost-glow__secondary:is(:hover, :focus-visible) { color: #c8860a; }
+.lost-glow a:focus-visible { outline: 2px solid #c8860a; outline-offset: 6px; }
+.lost-glow__signature { text-align: center; font-size: 10px; letter-spacing: .06em; color: #b4c1be; line-height: 1.8; }
+.lost-glow__signature span { margin-inline: 10px; color: #c8860a; }
+.lost-glow__main > * { animation: lost-glow-enter 550ms both; }
+.lost-glow__main > :nth-child(2) { animation-delay: 60ms; }
+.lost-glow__main > :nth-child(3) { animation-delay: 120ms; }
+.lost-glow__main > :nth-child(n+4) { animation-delay: 180ms; }
+@keyframes lost-glow-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) { .lost-glow { padding: 20px 24px; } .lost-glow__main { padding-block: 28px; } .lost-glow__actions { flex-direction: column; gap: 6px; margin-top: 24px; } .lost-glow__eyebrow { letter-spacing: .12em; } }
+@media (prefers-reduced-motion: reduce) { .lost-glow__main > * { animation: none; } .lost-glow__primary span, .lost-glow__secondary { transition: none; } .lost-glow__primary:is(:hover, :focus-visible) span { transform: none; } }
