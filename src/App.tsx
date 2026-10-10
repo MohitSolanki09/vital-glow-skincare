@@ -59,6 +59,7 @@ function Nav() {
       }`}
     >
       <div className="page-container py-4 flex items-center justify-between">
+        <a href="#home" aria-label="Vital Glow — Go to Home" onClick={() => setOpen(false)}>
         <img
           src={logoImg}
           width={480}
@@ -67,6 +68,7 @@ function Nav() {
           alt="Vital Glow"
           className="h-11 w-auto"
         />
+        </a>
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-8">

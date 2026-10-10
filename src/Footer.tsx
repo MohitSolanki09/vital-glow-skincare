@@ -1,4 +1,5 @@
 import gmpStamp from "./assets/gmp-certified.png"
+import logoImg from "./assets/logo-480.png"
 import isoStamp from "./assets/iso-9001-2015-certified.png"
 import fdaStamp from "./assets/fda-approved.png"
 import { useEffect, useRef, useState } from "react"
@@ -45,7 +46,7 @@ export function Footer() {
     <footer ref={footerRef} className="vg-footer" aria-label="Vital Glow footer">
       <div ref={ref} className="page-container">
         <div className={`vg-footer__brand ${reveal}`}>
-          <div><a href="#home" className="vg-footer__wordmark">VITAL GLOW<span aria-hidden="true">✦</span></a><p>Simple care. Better skin.</p></div>
+          <div><a href="#home" className="vg-footer__logo" aria-label="Vital Glow — Go to Home"><img src={logoImg} width={480} height={412} alt="Vital Glow" loading="lazy" decoding="async" /></a><p>Simple care. Better skin.</p></div>
           <h2>YOUR DAILY CARE,<br /><em>THOUGHTFULLY MADE.</em></h2>
         </div>
         <div className={`vg-footer__information ${reveal} d1`}>
